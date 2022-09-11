@@ -16,8 +16,9 @@
     <ul>
     {% for nws in news %}
         <li>
-            <a href="http://localhost:8000/news/{{ nws.pk }}" >
-                {{ nws.title|censor }} от {{ nws.created_dtm|date:'d.m.Y' }}
+            <!-- <a href="http://localhost:8000/news/{{ nws.pk }}" > -->
+            <a href="{% url "detail" nws.pk %}">
+              {{ nws.title|censor }} от {{ nws.created_dtm|date:'d.m.Y' }}
             </a>            
             <br>
             {{ nws.content|censor|truncatewords:50 }}
