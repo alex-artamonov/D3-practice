@@ -14,15 +14,15 @@ def multiply(value, arg):
 
 def get_badwords_list():
     base_dir = os.path.abspath(os.path.dirname(__file__))
-    file_name = os.path.join(self._BASE_DIR, 'taboo.txt')
+    file_name = os.path.join(base_dir, 'taboo.txt')
     with open(file_name, 'r') as f:
         taboo_list = [line.strip() for line in f.readlines()]
     return taboo_list
 
 @register.filter(name='censor')
 def replace_badwords(input_text, replacement_char = '*'):
-    #badwords_list = get_badwords_list()
-    badwords_list = ['волк', 'мир', 'раб', 'linux', 'мах','поп', 'королев']
+    badwords_list = get_badwords_list()
+    #badwords_list = ['волк', 'мир', 'раб', 'linux', 'мах','поп', 'королев']
     res = input_text
     for word in badwords_list:
         # word = r'\b%s\b' % word
