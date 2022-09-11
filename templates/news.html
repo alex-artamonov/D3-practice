@@ -1,0 +1,28 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+ 
+{% block title %}
+{{ flatpage.title }}
+{% endblock title %}
+ 
+{% block content %}
+<h2>{{ flatpage.title }}</h2>
+    <hr>
+    <h3>Новости и статьи:</h3>
+    <h3>Количество: 
+        {{ news|length }}  
+    </h3>
+    <ul>
+    {% for nws in news %}
+        <li>
+            <a href="http://localhost:8000/news/{{ nws.pk }}" >
+                {{ nws.title|censor }} от {{ nws.created_dtm|date:'d.m.Y' }}
+            </a>            
+            <br>
+            {{ nws.content|censor|truncatewords:50 }}
+        </li>
+    {% endfor %}
+    </ul>
+<!-- {{ news }} -->
+{% endblock content %}
